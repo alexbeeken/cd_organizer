@@ -22,7 +22,9 @@ class Artist
   end
 
   define_method(:add_album) do |album_title|
+    @index = @@collection.index(self)
     @albums.push(album_title)
+    @@collection.insert(@index, self)
   end
 
   define_method(:delete_album) do |album_title|
@@ -63,6 +65,5 @@ class Artist
       counter = counter + 1
     end
   end
-
 
 end
