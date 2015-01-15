@@ -66,11 +66,17 @@ describe("Artist") do
     end
   end
 
-  describe(".find_artist") do
+  describe(".search") do
     it("returns artist object for the artist name") do
       test_album = Artist.new({:artist => "Eminem", :albums => "The Slim Shady LP"})
       test_album.save()
-      find_album = Artist.find_artist("Eminem")
+      find_album = Artist.search("Eminem")
+      expect(find_album).to(eq(test_album))
+    end
+    it("returns artist object for the album name") do
+      test_album = Artist.new({:artist => "Eminem", :albums => "The Slim Shady LP"})
+      test_album.save()
+      find_album = Artist.search("The Slim Shady LP")
       expect(find_album).to(eq(test_album))
     end
   end
