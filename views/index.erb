@@ -1,0 +1,68 @@
+
+<h1>  CD Collection </h1>
+
+<ol>
+
+      <% counter = 1 %>
+  <% @collection.each() do |artist| %>
+  <li>
+    <%= "<a href='/artist/#{artist.id}'>#{artist.artist}</a>" %>
+    <ul>
+      <% artist.albums().each() do |album_title| %>
+        <% if album_title.class != "String".class %>
+        <% album_title.each() do |album_title_string| %>
+        <li><%= album_title_string %></li>
+
+        <form action='/delete_artist' method="post">
+          <input type="hidden" value="<%= "#{counter}" %>" name="id">
+          <input type="submit" value="Delete Artist" name="button">
+        </form>
+
+        <% end %>
+
+        <% else %>
+
+        <%= artist.albums()[0] %>
+
+        <% end %>
+        <%  end %>
+  <% counter += 1 %>
+    </ul>
+  </li>
+
+  <% end %>
+
+</ol>
+
+  <div id="add_artist">
+    <form action="/add" method="post">
+      <div class="form-group">
+        <label for="artist">Artist:</label>
+        <input id="artist" name="artist" class="form-control" type="text">
+      </div>
+      <div class="form-group">
+        <label for="album">Album:</label>
+        <input id="album" name="album" class="form-control" type="text">
+      </div>
+      <input  id="submit" type="submit" value="Add Artist & Album">
+    </form>
+  </div>
+
+  <div id="clear">
+    <form action="/clear" method="post">
+      <div class="form-group">
+        <input id="submit" type="submit" value="Clear All">
+      </div>
+    </form>
+  </div>
+
+
+  <div id="search">
+    <form action="/search" method="post">
+        <div class="form-group">
+          <label for="search">Artist or Album:</label>
+          <input id="search" name="search" class="form-control" type="text">
+        </div>
+      <input  id="submit" type="submit" value="Search">
+    </form>
+  </div>

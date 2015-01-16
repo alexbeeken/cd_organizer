@@ -1,0 +1,30 @@
+<h1><%=@artist.artist()%></h1>
+
+<% @artist.albums().each() do |album| %>
+  <ul>
+    <li>
+
+        <%= album %>
+
+      <form action='/delete_album' method="post">
+        <input type="hidden" value="<%= album %>" name="album">
+        <input type="submit" value="Delete Album" name="button">
+      </form>
+    </li>
+  </ul>
+<% end %>
+
+
+<div id="add_album">
+  <form action="/add_album" method="post">
+    <div id="form-group">
+      <label for="album">Album:</label>
+      <input id="album" name="album" class="form-control" type="text">
+      <input id="<%= @artist.id().to_s() %>" type="hidden" name="id">
+    </div>
+  <input id="submit" type="submit" value="Add Album">
+  </form>
+</div>
+
+
+<a href="/">Back to CD Collection</a>
