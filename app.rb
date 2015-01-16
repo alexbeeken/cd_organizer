@@ -51,3 +51,9 @@ post('/add_album') do
   @artist.add_album(@album)
   erb(:page)
 end
+
+post('/search') do
+  @word = params.fetch("search")
+  @result = Artist.search(@word)
+  erb(:search_result)
+end
