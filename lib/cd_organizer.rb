@@ -5,7 +5,7 @@ class Artist
 
   define_method(:initialize) do |attributes|
     @artist = attributes.fetch(:artist)
-    @albums = [attributes.fetch(:albums)]
+    @albums = attributes.fetch(:albums)
     @id = @@collection.length().+(1)
   end
 
@@ -22,9 +22,7 @@ class Artist
   end
 
   define_method(:add_album) do |album_title|
-    @index = @@collection.index(self)
     @albums.push(album_title)
-    @@collection.insert(@index, self)
   end
 
   define_method(:delete_album) do |album_title|

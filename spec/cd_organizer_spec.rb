@@ -1,5 +1,6 @@
 require('rspec')
 require('cd_organizer')
+require('pry')
 
 describe("Artist") do
   before do

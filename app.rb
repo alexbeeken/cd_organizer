@@ -2,6 +2,7 @@ require('sinatra')
 require('sinatra/reloader')
 require('./lib/cd_organizer')
 also_reload('./lib/**/*.rb')
+require('pry')
 
 
 get('/') do
@@ -39,6 +40,7 @@ end
 
 get('/artist/:id') do
   @artist = Artist.find_by_id((params.fetch('id')).to_i)
+  # binding.pry
   erb(:page)
 end
 
